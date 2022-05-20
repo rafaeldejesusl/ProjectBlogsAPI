@@ -5,6 +5,17 @@ const login = async (req, res) => {
   return res.status(200).json({ token });
 };
 
+const create = async (req, res) => {
+  const payload = {
+    displayName: req.body.displayName,
+    email: req.body.email,
+    password: req.body.password,
+    image: req.body.image };
+  const token = await User.create(payload);
+  return res.status(201).json({ token });
+};
+
 module.exports = {
   login,
+  create,
 };
