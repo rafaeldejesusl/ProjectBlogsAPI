@@ -16,6 +16,8 @@ app.post('/user', userValidation, User.create);
 
 app.get('/user', authValidation, User.getAll);
 
+app.get('/user/:id', authValidation, User.getById);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
