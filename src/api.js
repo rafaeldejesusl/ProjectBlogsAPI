@@ -22,6 +22,8 @@ app.get('/user/:id', authValidation, User.getById);
 
 app.post('/categories', authValidation, categoryValidation, Category.create);
 
+app.get('/categories', authValidation, Category.getAll);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
