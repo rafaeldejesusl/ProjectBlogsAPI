@@ -28,6 +28,8 @@ app.get('/categories', authValidation, Category.getAll);
 
 app.post('/post', authValidation, postValidation, Post.create);
 
+app.get('/post', authValidation, Post.getAll);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
