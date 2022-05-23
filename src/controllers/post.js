@@ -18,8 +18,18 @@ const getById = async (req, res) => {
   return res.status(200).json(post);
 };
 
+const update = async (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.body;
+  await Post.update(title, content, id);
+  req.post.title = title;
+  req.post.content = content;
+  return res.status(200).json(req.post);
+};
+
 module.exports = {
   create,
   getAll,
   getById,
+  update,
 };
