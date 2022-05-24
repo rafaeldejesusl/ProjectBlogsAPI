@@ -27,9 +27,16 @@ const update = async (req, res) => {
   return res.status(200).json(req.post);
 };
 
+const erase = async (req, res) => {
+  const { id } = req.params;
+  await Post.erase(id);
+  return res.status(204).end();
+};
+
 module.exports = {
   create,
   getAll,
   getById,
   update,
+  erase,
 };

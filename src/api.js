@@ -8,6 +8,7 @@ const authValidation = require('./middlewares/authValidation');
 const categoryValidation = require('./middlewares/categoryValidation');
 const postValidation = require('./middlewares/postValidation');
 const postEditValidation = require('./middlewares/postEditValidation');
+const postDeleteValidation = require('./middlewares/postDeleteValidation');
 
 // ...
 
@@ -34,6 +35,8 @@ app.get('/post', authValidation, Post.getAll);
 app.get('/post/:id', authValidation, Post.getById);
 
 app.put('/post/:id', authValidation, postEditValidation, Post.update);
+
+app.delete('/post/:id', authValidation, postDeleteValidation, Post.erase);
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
