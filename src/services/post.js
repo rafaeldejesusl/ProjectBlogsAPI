@@ -1,14 +1,24 @@
+const Sequelize = require('sequelize');
 const { Op } = require('sequelize');
 const { BlogPost, PostCategory, User, Category } = require('../database/models');
+const config = require('../database/config/config');
+
+const sequelize = new Sequelize(config.development);
 
 const create = async (post, user) => {
   const { title, content, categoryIds } = post;
   const { id } = user.payload;
-  const createdPost = await BlogPost.create({ title, content, userId: id });
-  const list = categoryIds.map(async (e) => PostCategory
-    .create({ categoryId: e, postId: createdPost.id }));
-  await Promise.all(list);
-  return createdPost;
+  const t = await sequelize.transaction();
+  try {
+    const createdPost = await BlogPost.create({ title, content, userId: id }, { transaction: t });
+    const list = categoryIds.map(async (e) => PostCategory
+      .create({ categoryId: e, postId: createdPost.id }, { transaction: t }));
+    await Promise.all(list);
+    await t.commit();
+    return createdPost;
+  } catch (e) {
+    return { message: e.message };
+  }
 };
 
 const getAll = async () => {
