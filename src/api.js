@@ -38,6 +38,8 @@ app.put('/post/:id', authValidation, postEditValidation, Post.update);
 
 app.delete('/post/:id', authValidation, postDeleteValidation, Post.erase);
 
+app.delete('/user/me', authValidation, User.erase);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;

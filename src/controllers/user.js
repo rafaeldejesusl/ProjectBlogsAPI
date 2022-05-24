@@ -27,9 +27,16 @@ const getById = async (req, res) => {
   return res.status(200).json(user);
 };
 
+const erase = async (req, res) => {
+  const { id } = req.user.payload;
+  await User.erase(id);
+  return res.status(204).end();
+};
+
 module.exports = {
   login,
   create,
   getAll,
   getById,
+  erase,
 };
