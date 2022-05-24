@@ -32,6 +32,8 @@ app.post('/post', authValidation, postValidation, Post.create);
 
 app.get('/post', authValidation, Post.getAll);
 
+app.get('/post/search?', authValidation, Post.search);
+
 app.get('/post/:id', authValidation, Post.getById);
 
 app.put('/post/:id', authValidation, postEditValidation, Post.update);
