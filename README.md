@@ -1,4 +1,4 @@
-# Trybe Futebol Clube
+# Blogs API
 
 Esse repositório contém uma aplicação desenvolvida para o projeto Blogs API na Trybe. É formado por um banco de dados MySQL, um back end desenvolvido em Node.Js com Express e manipulando o banco através da ORM Sequelize. Além disso, a biblioteca JWT é utilizada para fazer a autenticação do usuário.
 
